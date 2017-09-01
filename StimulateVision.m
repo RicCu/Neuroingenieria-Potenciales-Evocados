@@ -12,12 +12,12 @@ function [ rc ] = StimulateVision(state, dWidth, dLength)
 %       rc (real scalar): Return code. Success = 0; failure = -1.
     
     % Parameter validation and tile ordering
+    rc = -1;
     if state == 0
         c1 = (checkerboard(50, 5, 5) < 0.5);
     elseif state == 1
         c1 = (checkerboard(50, 5, 5) > 0.5);
     else
-        rc = -1;
         return
     end
     if (~exist('dWidth', 'var'))
@@ -38,6 +38,8 @@ function [ rc ] = StimulateVision(state, dWidth, dLength)
     c1(midX-dLength:midX+dLength, midY-dWidth:midY+dWidth, 1) = 255;
     c1(midX-dLength:midX+dLength, midY-dWidth:midY+dWidth,2) = 0;
     c1(midX-dLength:midX+dLength, midY-dWidth:midY+dWidth,3) = 0;
+    % Clear previous image and create new checkerboard
+    cla reset;
     imshow(c1)
     rc = 0;
     return
