@@ -1,9 +1,13 @@
-function [ rc ] = StimulateVision(state)
+function [ rc ] = StimulateVision(state, dWidth, dLength)
 %StimulateVision Create a checkerboard visual stimulus
 %   Create a checkerboard pattern for visual stimulation. 
 %   Args:
 %       state (real scalar): Control which tiles are black and which are
-%                            white. Valid values are 0 and 1.
+%                               white. Valid values are 0 and 1.
+%       dWidth (real scalar): Half the width of the middle red cross.
+%                               Defaults to 2.
+%       dLength (real scalar): Half the length of the middle red cross.
+%                               Deaults to 10.
 %   Returns:
 %       rc (real scalar): Return code. Success = 0; failure = -1.
     
@@ -16,12 +20,16 @@ function [ rc ] = StimulateVision(state)
         rc = -1;
         return
     end
+    if (~exist('dWidth', 'var'))
+        dWidth = 2;     % Cross has width of 2*dWidth
+    end
+    if (~exist('dLength', 'var'))
+        dLength = 10;   % Cross has length of 2*dLength
+    end
     % Expand Checkerboard to RGB
     c1 = c1 * 255;
     c1 = cat(3, c1, c1, c1);
     % Create red cross in the middle
-    dWidth = 2;     % Cross has width of 2*dWidth
-    dLength = 10;   % Cross has length of 2*dLength
     midX = length(c1(:,1,1))/2;
     midY = length(c1(1,:,1))/2;
     c1(midX-dWidth:midX+dWidth, midY-dLength:midY+dLength, 1) = 255;
