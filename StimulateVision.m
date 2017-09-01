@@ -11,6 +11,7 @@ function [ rc ] = StimulateVision(state, dWidth, dLength)
 %   Returns:
 %       rc (real scalar): Return code. Success = 0; failure = -1.
     
+
     % Parameter validation and tile ordering
     rc = -1;
     if state == 0
