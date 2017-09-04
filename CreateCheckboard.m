@@ -1,6 +1,15 @@
-function [ chb1, chb2 ] = CreateCheckboard(  dWidth, dLength )
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
+function [ chb0, chb1 ] = CreateCheckboard(  dWidth, dLength )
+%CreateCheckboard Create a checkerboard pattern for visual stimulus
+%   Args:
+%       dWidth (real scalar): Half the width of the middle red cross.
+%                               Defaults to 2.
+%       dLength (real scalar): Half the length of the middle red cross.
+%                               Deaults to 10.
+%   Returns:
+%       chb0 (real 3D matrix): RGB checkerboard pattern (normalized to
+%                               0-1).
+%       chb0 (real 3D matrix): RGB checkerboard pattern inverted with
+%                               respect to chb0 (normalized to 0-1).
 
     if (~exist('dWidth', 'var'))
         dWidth = 2;     % Cross has width of 2*dWidth
@@ -23,12 +32,12 @@ function [ chb1, chb2 ] = CreateCheckboard(  dWidth, dLength )
         c(midX-dL:midX+dL, midY-dW:midY+dW,3) = 0;
         return
     end
-    c1 = (checkerboard(50, 5, 5) < 0.5);
-    c2 = (checkerboard(50, 5, 5) > 0.5);
+    c0 = (checkerboard(50, 5, 5) < 0.5);
+    c1 = (checkerboard(50, 5, 5) > 0.5);
+    chb0 = CreatePattern(c0, dWidth, dLength);
     chb1 = CreatePattern(c1, dWidth, dLength);
-    chb2 = CreatePattern(c2, dWidth, dLength);
+    chb0 = chb0 / 255;
     chb1 = chb1 / 255;
-    chb2 = chb2 / 255;
 
 end
 
