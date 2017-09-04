@@ -1,4 +1,4 @@
-function [ rc, chkb0, chkb1 ] = StimulateVision(state, chkb0, chkb1, dWidth, dLength)
+function [ rc, chkb0, chkb1, img_handle ] = StimulateVision(state, chkb0, chkb1, img_handle, dWidth, dLength)
 %StimulateVision Create a checkerboard visual stimulus
 %   Create a checkerboard pattern for visual stimulation. 
 %   Args:
@@ -23,13 +23,17 @@ function [ rc, chkb0, chkb1 ] = StimulateVision(state, chkb0, chkb1, dWidth, dLe
     if (~exist('chkb0', 'var')) || (~exist('chkb1', 'var') || (length(chkb0) == 1) || (length(chkb1) == 1))
         [chkb0, chkb1] = CreateCheckboard(dWidth, dLength);
     end
+    if (~exist('img_handle', 'var') || img_handle < 0)
+        img_handle = image(chkb0)
+    end
     % Clear previous image and create new checkerboard
-    cla reset;
+    %cla reset;
     if state == 0
-        imshow(chkb0);
+        set(img_handle, 'CData', chkb0);
     elseif state == 1
-        imshow(chkb1);
+        set(img_handle, 'CData', chkb1);
     else
+        img_handle = -1;
         return
     end
     rc = 0;

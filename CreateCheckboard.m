@@ -27,6 +27,8 @@ function [ chb1, chb2 ] = CreateCheckboard(  dWidth, dLength )
     c2 = (checkerboard(50, 5, 5) > 0.5);
     chb1 = CreatePattern(c1, dWidth, dLength);
     chb2 = CreatePattern(c2, dWidth, dLength);
+    chb1 = chb1 / 255;
+    chb2 = chb2 / 255;
 
 end
 
