@@ -1,4 +1,4 @@
-function [ chkb0, chkb1, img_handle ] = StimulateVision(state, chkb0, chkb1, img_handle, dWidth, dLength)
+function [ chkb0, chkb1, img_handle ] = StimulateVision(state, chkb0, chkb1, img_handle, size, dWidth, dLength)
 %StimulateVision Create a checkerboard visual stimulus
 %   Create a checkerboard pattern for visual stimulation. 
 %   Args:
@@ -14,6 +14,7 @@ function [ chkb0, chkb1, img_handle ] = StimulateVision(state, chkb0, chkb1, img
 %       img_handle (real scalar): Handle for the current image object. If
 %                                   it receives -1 an image will be
 %                                   initialized.
+%       size (real scalar): Number of tiles (black or white) in pattern.
 %       dWidth (real scalar): Half the width of the middle red cross.
 %                               Defaults to 2.
 %       dLength (real scalar): Half the length of the middle red cross.
@@ -33,8 +34,14 @@ function [ chkb0, chkb1, img_handle ] = StimulateVision(state, chkb0, chkb1, img
         dLength = 10;   % Cross has length of 2*dLength
     end
     % If no checkerbord pattern was provided create one
+     if (~exist('size', 'var'))
+        size = 16;
+    end
+    if (mod(size, 2) == 0)
+        size = size / 2;
+    end
     if (~exist('chkb0', 'var')) || (~exist('chkb1', 'var') || (length(chkb0) == 1) || (length(chkb1) == 1))
-        [chkb0, chkb1] = CreateCheckboard(dWidth, dLength);
+        [chkb0, chkb1] = CreateCheckboard(size, dWidth, dLength);
     end
     % If no valid image handle was provided (-1), create an image object
     if (~exist('img_handle', 'var') || img_handle < 0)

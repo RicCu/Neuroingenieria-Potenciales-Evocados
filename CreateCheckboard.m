@@ -1,6 +1,7 @@
-function [ chb0, chb1 ] = CreateCheckboard(  dWidth, dLength )
+function [ chb0, chb1 ] = CreateCheckboard(  size, dWidth, dLength )
 %CreateCheckboard Create a checkerboard pattern for visual stimulus
 %   Args:
+%       size (real scalar): Number of tiles (black or white) in pattern.
 %       dWidth (real scalar): Half the width of the middle red cross.
 %                               Defaults to 2.
 %       dLength (real scalar): Half the length of the middle red cross.
@@ -17,6 +18,9 @@ function [ chb0, chb1 ] = CreateCheckboard(  dWidth, dLength )
     if (~exist('dLength', 'var'))
         dLength = 10;   % Cross has length of 2*dLength
     end
+    if (~exist('dLength', 'var'))
+        size = 8;
+    end
     function [ c ] = CreatePattern( c, dW, dL )
         % Expand Checkerboard to RGB
         c = c * 255;
@@ -32,8 +36,8 @@ function [ chb0, chb1 ] = CreateCheckboard(  dWidth, dLength )
         c(midX-dL:midX+dL, midY-dW:midY+dW,3) = 0;
         return
     end
-    c0 = (checkerboard(50, 5, 5) < 0.5);
-    c1 = (checkerboard(50, 5, 5) > 0.5);
+    c0 = (checkerboard(50, size, size) < 0.5);
+    c1 = (checkerboard(50, size, size) > 0.5);
     chb0 = CreatePattern(c0, dWidth, dLength);
     chb1 = CreatePattern(c1, dWidth, dLength);
     chb0 = chb0 / 255;
