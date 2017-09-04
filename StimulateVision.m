@@ -28,10 +28,10 @@ function [ chkb0, chkb1, img_handle ] = StimulateVision(state, chkb0, chkb1, img
     
     % Parameter validation and tile ordering
     if (~exist('dWidth', 'var'))
-        dWidth = 2;     % Cross has width of 2*dWidth
+        dWidth = 1;     % Cross has width of 2*dWidth
     end
     if (~exist('dLength', 'var'))
-        dLength = 10;   % Cross has length of 2*dLength
+        dLength = 5;   % Cross has length of 2*dLength
     end
     % If no checkerbord pattern was provided create one
      if (~exist('size', 'var'))
