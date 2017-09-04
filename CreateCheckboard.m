@@ -36,8 +36,8 @@ function [ chb0, chb1 ] = CreateCheckboard(  size, dWidth, dLength )
         c(midX-dL:midX+dL, midY-dW:midY+dW,3) = 0;
         return
     end
-    c0 = (checkerboard(50, size, size) < 0.5);
-    c1 = (checkerboard(50, size, size) > 0.5);
+    c0 = (checkerboard(100, size, size) < 0.5);
+    c1 = (checkerboard(100, size, size) > 0.5);
     chb0 = CreatePattern(c0, dWidth, dLength);
     chb1 = CreatePattern(c1, dWidth, dLength);
     chb0 = chb0 / 255;
