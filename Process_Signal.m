@@ -1,27 +1,30 @@
-function [senal, estimulo ] = Process_Signal( sgnlvtr,estimulo, fs, fd)
+function [senal, estimulo ] = Process_Signal( senal,estimulo, fs, fd)
 %This function will process the signal, absolute of signal, downsample,
 %reshape and fast fourier transformation 
 %downsample
 
 fact=fs/fd;
-%fimin=fx-20;
-%fimax= fx+20;
+size=length(senal);
+fact2=size/fact;
+
+%fact2=round(size/fact); in case they are not exact
+%newlength=fact2*fact;
+%senal=senal(1:newlength);
 
 %downsample signlas to 2000Hz
-senal=downsample(sgnlvtr,fact);
-estimulo=downsample(estimulo,fact);
-size=length(senal);
+senal2= reshape(senal,[fact, fact2]);
+senal=trapz(senal2);
+senal=senal';
 
-%fct= factores(size);
-%senalt= reshape(senal,[fct(1,1), fct(1,2)]);
-%senaltri=abs(trapz(senalt));
+estimulo2= reshape(estimulo,[fact, fact2]);
+estimulo=trapz(estimulo2);
+estimulo=estimulo';
 
-%t=length(senal)/fd;
-%fi=1/t:1/t:(length(senal)/t);
-%sifnalfft=abs(fft(senal));
+% senal=downsample(sgnlvtr,fact);
+% estimulo=downsample(estimulo,fact);
 
-%[M,I] = max(sifnalfft); in case you need the frequency analysis 
 
-    
+
+
 end
 
