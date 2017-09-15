@@ -44,8 +44,9 @@ plot(tvectnuevo,estimulo2nuevo)
 %% Get events of signal
 %infgraph, infreal, dlyP100] = VEP_analysis( senal2nueva, estimulo2nuevo,tvectnuevo, rango);
 %[ infgraph, infreal, dlyP100] = VEP_analysis( senal2, estimulo2,tvect, rango);
- [ VEPdata,TData, P100delay] = VEP_analysis2( senal2nueva, estimulo2nuevo,tvectnuevo, rango);
- VEPdataMean=mean(TData);
+[ VEPdata,TData, P100delay, NoPot, Nreal] = VEP_analysis2( senal2nueva, estimulo2nuevo,tvectnuevo, rango);
+%[ VEPdata,TData, P100delay, NoPot, Nreal] = VEP_analysis2( senal2nueva, estimulo2nuevo,tvectnuevo, rango);
+ VEPdataMean=sum(TData)/Nreal;
  
 %% Plot results
 %subplot(2,1,1); plot(tvect,senal2,'*','MarkerIndices',[IxP100 I75 I145]);subplot(2,1,2); plot(t2vect,estimulo2);
