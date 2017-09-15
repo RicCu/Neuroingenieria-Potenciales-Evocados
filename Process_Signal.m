@@ -16,9 +16,9 @@ size=length(senal);
 %senalt= reshape(senal,[fct(1,1), fct(1,2)]);
 %senaltri=abs(trapz(senalt));
 
-t=length(senal)/fd;
-fi=1/t:1/t:(length(senal)/t);
-sifnalfft=abs(fft(senal));
+%t=length(senal)/fd;
+%fi=1/t:1/t:(length(senal)/t);
+%sifnalfft=abs(fft(senal));
 
 %[M,I] = max(sifnalfft); in case you need the frequency analysis 
 
