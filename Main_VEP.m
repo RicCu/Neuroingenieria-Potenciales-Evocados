@@ -61,6 +61,7 @@ tvect=1000*(1:length(VECTsenal))/fd; %Create time vector and change to ms
 [VEPdata,TData, P100delay, NoPot, Nreal] = VEP_analysis2( VECTsenal, VECTestim,tvect, rango);
 AmP100=sum(VEPdata(:,2))/Nreal;
 VEPdataMean=sum(TData)/Nreal;
+
 P100delayMean=sum(P100delay)/Nreal;
 end
 
