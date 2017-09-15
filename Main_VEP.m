@@ -1,4 +1,4 @@
-function [ P100delayMean, VEPdataMean,VECTsenal, VECTestim,tvect] = Main_VEP( )
+function [ AmP100,P100delayMean, VEPdataMean,VECTsenal, VECTestim,tvect] = Main_VEP( )
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -59,6 +59,7 @@ pause(.5)
 end
 tvect=1000*(1:length(VECTsenal))/fd; %Create time vector and change to ms
 [VEPdata,TData, P100delay, NoPot, Nreal] = VEP_analysis2( VECTsenal, VECTestim,tvect, rango);
+AmP100=sum(VEPdata(:,2))/Nreal;
 VEPdataMean=sum(TData)/Nreal;
 P100delayMean=sum(P100delay)/Nreal;
 end
