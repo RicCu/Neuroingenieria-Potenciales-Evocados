@@ -56,9 +56,10 @@ for i = 1:1:5
 plot(VEPdata(i,1),VEPdata(i,2),'*',VEPdata(i,3),VEPdata(i,4),'*',VEPdata(i,5),VEPdata(i,6),'*' );
 hold on 
 end
+
 set(gca, 'XGrid', 'on' );
 set(gca,'GridLineStyle',':');
-subplot(2,1,2); plot(tvect,estimulo2);
+subplot(2,1,2); plot(tvectnuevo,estimulo2nuevo);
 
 set(gca, 'XGrid', 'on' ); % To do.. change trasparency
 set(gca,'GridLineStyle',':');
