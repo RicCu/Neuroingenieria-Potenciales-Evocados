@@ -14,5 +14,11 @@ t=length(senal2nueva)/fd;
 t2=length(estimulo2nuevo)/fd;
 tvect=1000*(1:length(senal2))/fd; %Create time vector and change to ms
 tvectnuevo=1000*(1:length(senal2nueva))/fd; %Create time vector and change to ms
+
+figure
+plot(tvectnuevo,senal2nueva)
+figure
+plot(tvectnuevo,estimulo2nuevo)
+
 end
 
