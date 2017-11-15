@@ -9,7 +9,7 @@ function [ chb0, chb1 ] = CreateCheckboard(  size, dWidth, dLength )
 %   Returns:
 %       chb0 (real 3D matrix): RGB checkerboard pattern (normalized to
 %                               0-1).
-%       chb0 (real 3D matrix): RGB checkerboard pattern inverted with
+%       chb1 (real 3D matrix): RGB checkerboard pattern inverted with
 %                               respect to chb0 (normalized to 0-1).
 
     function [ c ] = CreatePattern( c, dW, dL )
@@ -27,10 +27,28 @@ function [ chb0, chb1 ] = CreateCheckboard(  size, dWidth, dLength )
         c(midX-dL:midX+dL, midY-dW:midY+dW,3) = 0;
         return
     end
+
+    function check = checkerboard_v1(tile_size, num_rows, num_cols)
+        tile = [ones(tile_size, tile_size), zeros(tile_size, tile_size);
+                zeros(tile_size, tile_size), ones(tile_size, tile_size)];
+        check = tile;
+        for i = 1:num_cols-1
+            check = [check, tile];
+        end
+        row = check;
+        for i = 1:num_rows-1
+            check = [check; row];
+        end
+        return 
+    end
     tile_size = idivide(int32(96), size) * dWidth;
-    tile_size
-    c0 = (checkerboard(tile_size, size, size) < 0.5);
-    c1 = (checkerboard(tile_size, size, size) > 0.5);
+    % tile_size
+    
+    c0 = (checkerboard_v1(tile_size, size, size) < 0.5);
+    c1 = (checkerboard_v1(tile_size, size, size) > 0.5);
+    
+    % c0 = (checkerboard(tile_size, size, size) < 0.5);
+    % c1 = (checkerboard(tile_size, size, size) > 0.5);
     chb0 = CreatePattern(c0, dWidth, dLength);
     chb1 = CreatePattern(c1, dWidth, dLength);
     chb0 = chb0 / 255;
