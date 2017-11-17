@@ -1,4 +1,4 @@
-function [ chkb0, chkb1, img_handle ] = StimulateVision(state, chkb0, chkb1, img_handle, size, dWidth, dLength)
+function [ chkb0, chkb1, img_handle ] = StimulateVision(state, chkb0, chkb1, img_handle, size, black_time, dWidth, dLength)
 %StimulateVision Create a checkerboard visual stimulus
 %   Create a checkerboard pattern for visual stimulation. 
 %   Args:
@@ -19,6 +19,8 @@ function [ chkb0, chkb1, img_handle ] = StimulateVision(state, chkb0, chkb1, img
 %                               Defaults to 2.
 %       dLength (real scalar): Half the length of the middle red cross.
 %                               Deaults to 10.
+%       black_time (real scalar): Time of initial black screen in seconds,
+%               defaults to zero
 %   Returns:
 %       chkb0 (real 3D matrix): RGB checkerboard pattern (normalized to
 %                               0-1).
@@ -41,15 +43,20 @@ function [ chkb0, chkb1, img_handle ] = StimulateVision(state, chkb0, chkb1, img
         size = size / 2;
     end
     if (~exist('chkb0', 'var')) || (~exist('chkb1', 'var') || (length(chkb0) == 1) || (length(chkb1) == 1))
-        [chkb0, chkb1] = CreateCheckboard(size, dWidth, dLength);
+        [chkb0, chkb1, black] = CreateCheckboard(size, dWidth, dLength);
+    end
+    if (~exist('black_time', 'var'))
+        black_time = 0; 
     end
     % If no valid image handle was provided (-1), create an image object
     if (~exist('img_handle', 'var') || img_handle < 0)
         figure('units','normalized','outerposition',[0 0 1 1]);
-        img_handle = image(chkb0);
+        img_handle = image(black);
         set(gca,'dataaspectratio',[1 1 1]);
         set(gcf,'MenuBar','none');
         axis off;
+        pause(black_time)
+        return
     end
     % Update image object
     if state == 0

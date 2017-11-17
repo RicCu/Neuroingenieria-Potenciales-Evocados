@@ -1,10 +1,9 @@
-function [ AmP100,P100delayMean, VEPdataMean,VECTsenal, VECTestim,tvect] = Main_VEP( )
+function [ AmP100,P100delayMean, VEPdataMean,VECTsenal, VECTestim,tvect] = Main_VEP(size, N )
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
 
 %Variables para estimulación
-size=4;
-N=6;
+
 state=1;
 img_handle=-1;
 chkb0=0;
