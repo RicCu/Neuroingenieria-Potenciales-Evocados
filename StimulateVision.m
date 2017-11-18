@@ -51,11 +51,18 @@ function [ chkb0, chkb1, img_handle ] = StimulateVision(state, chkb0, chkb1, img
     % If no valid image handle was provided (-1), create an image object
     if (~exist('img_handle', 'var') || img_handle < 0)
         figure('units','normalized','outerposition',[0 0 1 1]);
-        img_handle = image(black);
+        if black_time > 0
+            init_pattern = black;
+        else
+            init_pattern = chkb0;
+        end
+        img_handle = image(init_pattern);
         set(gca,'dataaspectratio',[1 1 1]);
         set(gcf,'MenuBar','none');
         axis off;
-        pause(black_time)
+        if black_time > 0
+            pause(black_time)
+        end
         return
     end
     % Update image object
