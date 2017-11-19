@@ -1,4 +1,4 @@
-function StoreData2(src, evt)
+function StoreData2(src, evt, inf)
 %n=s.ScansAquired;
 global data
 
@@ -15,7 +15,8 @@ data=tempData;
 %figure
 %plot(evt.Data)
 %dlmwrite('experiment_average.csv', cumAvg, '-append');
-dlmwrite('experiment.csv', tempData', '-append');
+
+dlmwrite(inf, tempData', '-append');
 % s2 = xor(s2, 1);
 % [c0, c1, img] = StimulateVision(s2, c0, c1, img, size);
 %toc

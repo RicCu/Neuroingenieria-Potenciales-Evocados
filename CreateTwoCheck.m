@@ -3,6 +3,8 @@ function CreateTwoCheck (time, size, NumEstim)
 %tipo=2 cuando quiere pantalla negra y dos checkboard ... se puede cambiar
 %si se desean mas checkboards
 global data
+inf=strcat(num2str(time),'ET',num2str(size),'size',num2str(NumEstim),'NE_dos.csv');
+
 %seq=seq/2;
 dWidth = 1; %Inicializacion de valores para Checkboard
 dLength = 5;
@@ -19,7 +21,7 @@ addAnalogInputChannel(s,'Dev2',0, 'Voltage');
 s.Rate = fs;
 TotalTime=(NumEstim*time*2)+blacktime;
 s.DurationInSeconds=TotalTime;
-lh=addlistener(s,'DataAvailable',@(src,event)StoreData2(src, event));
+lh=addlistener(s,'DataAvailable',@(src,event)StoreData2(src, event, inf));
 
 s.NotifyWhenDataAvailableExceeds = fs*TotalTime;
 

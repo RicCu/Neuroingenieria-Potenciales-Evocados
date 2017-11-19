@@ -3,6 +3,7 @@ function CreateSequenceDos (time, seq)
 %tipo=2 cuando quiere pantalla negra y dos checkboard ... se puede cambiar
 %si se desean mas checkboards
 global data
+inf=strcat(num2str(seq),'seq',num2str(time),'sec_dos.csv');
 seq=seq/2;
 dWidth = 1; %Inicializacion de valores para Checkboard
 dLength = 5;
@@ -19,7 +20,7 @@ addAnalogInputChannel(s,'Dev2',0, 'Voltage');
 s.Rate = fs;
 TotalTime=(NumEstim*2*time)+blacktime;
 s.DurationInSeconds=TotalTime;
-lh=addlistener(s,'DataAvailable',@(src,event)StoreData2(src, event));
+lh=addlistener(s,'DataAvailable',@(src,event)StoreData2(src, event, inf));
 
 s.NotifyWhenDataAvailableExceeds = fs*TotalTime;
 

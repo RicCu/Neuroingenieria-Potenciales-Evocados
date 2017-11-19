@@ -1,9 +1,8 @@
-function CreateOneCheck(time, size, NumEstim)
+function CreateOneCheck2 (time, size, NumEstim)
 %tipo=1 cuando solo quire pantalla negra y un checkboard
 %tipo=2 cuando quiere pantalla negra y dos checkboard ... se puede cambiar
 %si se desean mas checkboards
 global data
-inf=strcat(num2str(time),'ET',num2str(size),'size',num2str(NumEstim),'NE_uno.csv');
 %seq=seq/2;
 dWidth = 1; %Inicializacion de valores para Checkboard
 dLength = 5;
@@ -20,7 +19,7 @@ addAnalogInputChannel(s,'Dev2',0, 'Voltage');
 s.Rate = fs;
 TotalTime=(NumEstim*time)+blacktime;
 s.DurationInSeconds=TotalTime;
-lh=addlistener(s,'DataAvailable',@(src,event)StoreData2(src, event,inf));
+lh=addlistener(s,'DataAvailable',@(src,event)StoreData2(src, event));
 
 s.NotifyWhenDataAvailableExceeds = fs*TotalTime;
 
@@ -31,7 +30,7 @@ while(~s.IsDone)
     
     [x, y, img]=StimulateVision(0, black, c1, img);
     pause(1)
-    [x, y , img]=StimulateVision(0, c0, c1, img);
+    [x, y , img]=StimulateVision(0, c1, c0, img);
     pause(time)
 
 end
