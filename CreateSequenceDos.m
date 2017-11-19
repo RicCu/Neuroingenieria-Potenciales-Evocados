@@ -1,5 +1,4 @@
-
-function CreateSequence (time, seq, tipo)
+function CreateSequenceDos (time, seq)
 %tipo=1 cuando solo quire pantalla negra y un checkboard
 %tipo=2 cuando quiere pantalla negra y dos checkboard ... se puede cambiar
 %si se desean mas checkboards
@@ -18,15 +17,13 @@ d = daq.getDevices;
 s = daq.createSession('ni');
 addAnalogInputChannel(s,'Dev2',0, 'Voltage');
 s.Rate = fs;
-TotalTime=(NumEstim*tipo*time)+blacktime;
+TotalTime=(NumEstim*2*time)+blacktime;
 s.DurationInSeconds=TotalTime;
 lh=addlistener(s,'DataAvailable',@(src,event)StoreData2(src, event));
 
 s.NotifyWhenDataAvailableExceeds = fs*TotalTime;
 
 i=1;
-
-if tipo==2 %Cambiar a Cases
     startBackground(s);
     while(~s.IsDone)
         
@@ -44,27 +41,8 @@ if tipo==2 %Cambiar a Cases
     wait(s);
     delete(lh);
     release(s)
-else
-    startBackground(s);
-    while(~s.IsDone)
-        
-        %for i= 1:1:NumEstim
-        
-        [ Sequence{i,1},Sequence{i,2},Sequence{i,3}] =   CreateCheckboard( seq(1,i), dWidth, dLength ); %[ chb0, chb1, black ] = CreateCheckboard(  size, dWidth, dLength )
-        [c0, c1 , img]=StimulateVision(0, Sequence{i,3}, Sequence{i,1}, img);
-        pause(1)
-        [c0, c1 , img]=StimulateVision(0, Sequence{i,1}, Sequence{i,1}, img);
-        pause(time)
-%         [c0, c1 , img]=StimulateVision(0, Sequence{i,2}, Sequence{i,1}, img);
-%         pause(time)
-        i=i+1;
-    end
-    
-    wait(s);
-    delete(lh);
-    release(s)  
-end
 
+   
 figure
 plot(data)
 end
