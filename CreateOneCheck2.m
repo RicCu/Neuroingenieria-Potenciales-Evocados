@@ -17,7 +17,7 @@ fs=500;
 
 d = daq.getDevices;
 s = daq.createSession('ni');
-addAnalogInputChannel(s,'Dev2',0, 'Voltage');
+addAnalogInputChannel(s,'Dev1',0, 'Voltage');
 s.Rate = fs;
 TotalTime=(NumEstim*time)+blacktime;
 s.DurationInSeconds=TotalTime;
@@ -43,6 +43,7 @@ release(s)
 
 
 figure
+timevect=
 plot(data)
 %out=data;
 end

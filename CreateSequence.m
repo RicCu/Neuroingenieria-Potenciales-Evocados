@@ -18,7 +18,7 @@ fs=500;
 
 d = daq.getDevices;
 s = daq.createSession('ni');
-addAnalogInputChannel(s,'Dev2',0, 'Voltage');
+addAnalogInputChannel(s,'Dev1',0, 'Voltage');
 s.Rate = fs;
 TotalTime=(NumEstim*tipo*time)+blacktime;
 s.DurationInSeconds=TotalTime;
