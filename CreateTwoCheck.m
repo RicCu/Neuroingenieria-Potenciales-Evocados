@@ -11,7 +11,7 @@ dLength = 5;
 %NumEstim=length(seq);
 %Sequence=cell(NumEstim, 3); %Matriz donde se guardarán datos de CreateCheckboard:  [ chb0, chb1, black ]
 img = -1;
-blacktime= NumEstim; %Empieza con pantalla negra un segundo luego un segundo despues de cada checkboard
+blacktime= NumEstim*2; %Empieza con pantalla negra un segundo luego un segundo despues de cada checkboard
 fs=500;
 
 
@@ -31,7 +31,7 @@ startBackground(s);
 while(~s.IsDone)
     
     [x, y, img]=StimulateVision(0, black, c1, img);
-    pause(1)
+    pause(2)
     [x, y , img]=StimulateVision(0, c0, c1, img);
     pause(time)
     [x, y , img]=StimulateVision(0, c1, c0, img);
