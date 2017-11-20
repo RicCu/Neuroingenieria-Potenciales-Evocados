@@ -1,12 +1,12 @@
 close all
 clear all
 
-CreateOneCheck(2, 4, 10);
+CreateOneCheck(4, 4, 20);
 close all
 clear all
-CreateOneCheck(2, 8, 10);
+CreateOneCheck(4, 8, 20);
 close all
 clear all
-CreateOneCheck(2, 16, 10);
+CreateOneCheck(4, 16, 20);
 close all
 clear all
