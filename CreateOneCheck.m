@@ -1,4 +1,4 @@
-function CreateOneCheck(time, size, NumEstim)
+   function CreateOneCheck(time, size, NumEstim)
 %tipo=1 cuando solo quire pantalla negra y un checkboard
 %tipo=2 cuando quiere pantalla negra y dos checkboard ... se puede cambiar
 %si se desean mas checkboards
@@ -16,7 +16,7 @@ fs=500;
 
 d = daq.getDevices;
 s = daq.createSession('ni');
-addAnalogInputChannel(s,'Dev1',0, 'Voltage');
+addAnalogInputChannel(s,'Dev1',[0 1], 'Voltage');
 s.Rate = fs;
 TotalTime=(NumEstim*time)+blacktime;
 s.DurationInSeconds=TotalTime;

@@ -2,7 +2,8 @@ function CreateTwoCheck (time, size, NumEstim)
 %tipo=1 cuando solo quire pantalla negra y un checkboard
 %tipo=2 cuando quiere pantalla negra y dos checkboard ... se puede cambiar
 %si se desean mas checkboards
-global data
+global data2
+global data1
 inf=strcat(num2str(time),'ET',num2str(size),'size',num2str(NumEstim),'NE_dos.csv');
 
 %seq=seq/2;
@@ -17,7 +18,7 @@ fs=500;
 
 d = daq.getDevices;
 s = daq.createSession('ni');
-addAnalogInputChannel(s,'Dev1',0, 'Voltage');
+addAnalogInputChannel(s,'Dev1',[0 1], 'Voltage');
 s.Rate = fs;
 TotalTime=(NumEstim*time*2)+blacktime;
 s.DurationInSeconds=TotalTime;

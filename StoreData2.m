@@ -1,6 +1,8 @@
 function StoreData2(src, evt, inf)
 %n=s.ScansAquired;
-global data
+global data1
+global data2
+
 
 %tic
 tempData= evt.Data;
@@ -10,7 +12,10 @@ n=src.ScansAcquired;
 
 %p=(n/2000);
 %data(:,p-1:p)=tempData;
-data=tempData;
+data1=tempData(:,1);
+data2=tempData(:,2);
+
+%data=tempData;
 %[cumAvg, n_cum] = cum_avg(tempData', cumAvg, n_cum);
 %figure
 %plot(evt.Data)
