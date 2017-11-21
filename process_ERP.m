@@ -1,4 +1,4 @@
-function [] = process_ERP(size, sec)
+function [] = process_ERP(SIZE, sec)
 %UNTITLED2 Summary of this function goes here
 %   Args:
 %       size (number of tiles in checkerboard)
@@ -23,6 +23,8 @@ img = -1;
 cumAvg = zeros(1, 250);
 n_cum = 0;
 
+
+
 fs=500;
 d = daq.getDevices;
 s = daq.createSession('ni');
@@ -30,9 +32,9 @@ addAnalogInputChannel(s,'Dev1',[0 1], 'Voltage');
 s.Rate = fs;
 s.DurationInSeconds=sec;
 
-[b,a]=butter(6,2/(fs/2),'high'); %Filter design
+[b,a]=butter(6,30/(fs/2),'low'); %Filter design
 
-lh=addlistener(s,'DataAvailable',@(src,event)StoreData(src, event, size));
+lh=addlistener(s,'DataAvailable',@(src,event)StoreData(src, event, SIZE));
 %lh2=addlistener(s,'DataAvailable',@(src,event)StimulateVision(s2, c0, c1, img));
 
 
@@ -43,7 +45,7 @@ while(~s.IsDone)
     z=z+1;
     s2 = xor(s2, 1);
     %timepre(z)=s.ScansAcquired;
-    [c0, c1, img] = StimulateVision(s2, c0, c1, img, size);
+    [c0, c1, img] = StimulateVision(s2, c0, c1, img, SIZE,1);
     time(z)=(s.ScansAcquired);
      pause(.5)
 end
@@ -51,9 +53,13 @@ end
 wait(s);
 delete(lh);
 release(s)
+% DATA1=transpose(data1);
+% DATA2=transpose(data1);
 
-FiltData1=filtfilt(b,a,data1);
-FiltData2=filtfilt(b,a,data2);
+[s,e]=size(data1);
+
+FiltData1=filtfilt(b,a,data1(:,4:e));
+FiltData2=filtfilt(b,a,data2(:,4:e));
 
 
 PromCanal1=mean(FiltData1,2);
@@ -75,7 +81,7 @@ dlmwrite('prueba.csv', PromDATA');
 % 
 % spromFilt=mean(FiltData,2);
 figure
-plot(sprom)
+plot(PromDATA)
 % hold on
 % plot (spromFilt)
 %clear all
