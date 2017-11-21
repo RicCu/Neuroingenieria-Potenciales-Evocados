@@ -6,7 +6,8 @@ function [] = process_ERP(size, sec)
 
 %clear all
 %close all
-global data
+global data1
+global data2
 
 global s2
 global c0
@@ -25,7 +26,7 @@ n_cum = 0;
 fs=500;
 d = daq.getDevices;
 s = daq.createSession('ni');
-addAnalogInputChannel(s,'Dev1',0, 'Voltage');
+addAnalogInputChannel(s,'Dev1',[0 1], 'Voltage');
 s.Rate = fs;
 s.DurationInSeconds=sec;
 
@@ -49,23 +50,39 @@ end
 
 wait(s);
 delete(lh);
+release(s)
 
-sprom=mean(data,2);
-figure
+FiltData1=filtfilt(b,a,data1);
+FiltData2=filtfilt(b,a,data2);
+
+
+PromCanal1=mean(FiltData1,2);
+PromCanal2=mean(FiltData2,2);
+
+
+%sprom=mean(data,2);
+%figure
 %plot(sprom)
 %figure
 %plot(cumAvg)
-release(s)
-dlmwrite('average.csv', sprom, '-append');
-plot(time)
-FiltData=filtfilt(b,a,data);
+PromDATA(:,1:2)=[PromCanal1 , PromCanal2];
+dlmwrite('prueba.csv', PromDATA');
 
-spromFilt=mean(FiltData,2);
+% dlmwrite('average.csv', sprom, '-append');
+% plot(time)
+% 
+% FiltData=filtfilt(b,a,data);
+% 
+% spromFilt=mean(FiltData,2);
 figure
 plot(sprom)
-hold on
-plot (spromFilt)
+% hold on
+% plot (spromFilt)
 %clear all
 %exit
+Resultados=[ 1 2 3 4 5; 10 20 30 40 50];
+
+dlmwrite('resultados.csv', Resultados);
+clear all
 end
 
