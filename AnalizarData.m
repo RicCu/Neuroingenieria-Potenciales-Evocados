@@ -20,7 +20,7 @@ for i=1:1:NumEstim
 end
 
  
-
+3
 % estimData=[data(1,1001:3000),data(1,4001:6000),data(1,7001:9000),data(1,10001:12000)
 [spec_raw, fspec, tspec]=spectrogram(estimData,1000,2,[1:1:50],500,'yaxis');
 abs_spec_raw=abs(spec_raw); 
