@@ -2,7 +2,8 @@
 %tipo=1 cuando solo quire pantalla negra y un checkboard
 %tipo=2 cuando quiere pantalla negra y dos checkboard ... se puede cambiar
 %si se desean mas checkboards
-global data
+global data1
+global data2
 inf=strcat(num2str(time),'ET',num2str(size),'size',num2str(NumEstim),'NE_uno.csv');
 %seq=seq/2;
 dWidth = 1; %Inicializacion de valores para Checkboard
@@ -42,5 +43,7 @@ release(s)
 
 
 figure
-plot(data)
+plot(data1)
+figure
+plot(data2)
 end

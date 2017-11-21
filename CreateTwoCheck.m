@@ -46,5 +46,7 @@ release(s)
 
 
 figure
-plot(data)
+plot(data1)
+figure
+plot(data2)
 end
