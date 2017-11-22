@@ -1,26 +1,28 @@
-data=csvread('4ET4size20NE_uno.csv');
+data=csvread('4ET32size20NE_uno_4sec.csv');
 fs=500;
-NumEstim=20;
+NumEstim=15;
 totalSamples=length(data);
 dt=1/fs;
 TimeVECT=(dt:dt:totalSamples/fs);
 plot(TimeVECT,data)
 SMatrix=zeros(NumEstim, 3);
-spectrogram(data(1,1:500),500,2,[1:1:50],500,'yaxis')
+spectrogram(data(1,1:2000),2000,2,[1:1:50],500,'yaxis')
 figure
-spectrogram(data(1,500:2500),2000,2,[1:1:50],500,'yaxis')
+spectrogram(data(1,2001:4000),2000,2,[1:1:50],500,'yaxis')
 
 for i=1:1:NumEstim 
-    cont=i*2500;
+    cont=i*4000;
     if i==1
     estimDATA=data(1,cont-1999:cont);
-    blackDATA=data(1,cont-2499:cont-2000);
+    blackDATA=data(1,cont-3999:cont-2000);
     else
     estimDATA=[estimDATA, data(1,cont-1999:cont)]; 
-    blackDATA=[blackDATA, data(1,cont-2499:cont-2000)];
+    blackDATA=[blackDATA, data(1,cont-3999:cont-2000)];
     end
 end
 
+figure
+spectrogram(estimDATA,2000,2,[1:1:50],500,'yaxis');
 [spec_raw1, fspec1, tspec1]=spectrogram(estimDATA,2000,2,[1:1:50],500,'yaxis');
 abs_spec_raw1=abs(spec_raw1); 
 
@@ -29,7 +31,9 @@ del_the1=abs_spec_raw1((1:7),:);      % Separación manal por bandas de EEG (delt
 alpha1=abs_spec_raw1((8:13),:);
 betha1=abs_spec_raw1((14:31),:);
 
-[spec_raw2, fspec2, tspec2]=spectrogram(blackDATA,1000,2,[1:1:50],500,'yaxis');
+figure
+spectrogram(blackDATA,1000,2,[1:1:50],500,'yaxis');
+[spec_raw2, fspec2, tspec2]=spectrogram(blackDATA,2000,2,[1:1:50],500,'yaxis');
 abs_spec_raw2=abs(spec_raw2); 
 
 
