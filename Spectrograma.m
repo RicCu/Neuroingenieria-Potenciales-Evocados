@@ -1,4 +1,4 @@
-data=csvread('4ET16size20NE_uno.csv');
+
 fs=500;
 NumEstim=20;
 totalSamples=length(data);
