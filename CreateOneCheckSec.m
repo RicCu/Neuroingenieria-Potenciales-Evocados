@@ -1,4 +1,4 @@
-   function CreateOneCheck(time, size, NumEstim)
+function CreateOneCheckSec(time, size, NumEstim)
 %tipo=1 cuando solo quire pantalla negra y un checkboard
 %tipo=2 cuando quiere pantalla negra y dos checkboard ... se puede cambiar
 %si se desean mas checkboards
@@ -11,7 +11,7 @@ dLength = 5;
 %NumEstim=length(seq);
 %Sequence=cell(NumEstim, 3); %Matriz donde se guardarán datos de CreateCheckboard:  [ chb0, chb1, black ]
 img = -1;
-blacktime= NumEstim*2; %Empieza con pantalla negra un segundo luego un segundo despues de cada checkboard
+blacktime= NumEstim; %Empieza con pantalla negra un segundo luego un segundo despues de cada checkboard
 fs=500;
 
 
@@ -31,7 +31,7 @@ startBackground(s);
 while(~s.IsDone)
     
     [x, y, img]=StimulateVision(0, black, c1, img);
-    pause(2)
+    pause(1)
     [x, y , img]=StimulateVision(0, c0, c1, img);
     pause(time)
 

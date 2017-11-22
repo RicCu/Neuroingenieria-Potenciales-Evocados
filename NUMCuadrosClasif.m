@@ -1,10 +1,10 @@
 close all
 clear all
 
-data4=csvread('calsificador_4ET4size20NE_uno.csv');
-data8=csvread('calsificador_4ET8size20NE_uno.csv');
-data16=csvread('calsificador_4ET16size20NE_uno.csv');
-data32=csvread('calsificador_4ET32size20NE_uno.csv');
+data4=csvread('calsificador_4ET4size10NE_uno.csv');
+% data8=csvread('calsificador_4ET8size20NE_uno.csv');
+% data16=csvread('calsificador_4ET16size20NE_uno.csv');
+data32=csvread('calsificador_4ET32size10NE_uno.csv');
 
 x(1,:)=data4(1,:);
 y(1,:)=data4(2,:);
