@@ -4,7 +4,7 @@ function CreateOneCheckSec(time, size, NumEstim)
 %si se desean mas checkboards
 global data1
 global data2
-inf=strcat(num2str(time),'ET',num2str(size),'size',num2str(NumEstim),'NE_uno_dosec.csv');
+inf=strcat(num2str(time),'ET',num2str(size),'size',num2str(NumEstim),'NE_uno_unoSec.csv');
 %seq=seq/2;
 dWidth = 1; %Inicializacion de valores para Checkboard
 dLength = 5;
