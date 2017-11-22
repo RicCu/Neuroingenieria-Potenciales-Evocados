@@ -13,9 +13,9 @@ z(1,:)=data4(3,:);
 scatter3(x,y,z, 'filled');
 
 
-x1(1,:)=data16(1,:);
-y1(1,:)=data16(2,:);
-z1(1,:)=data16(3,:);
+x1(1,:)=data32(1,:);
+y1(1,:)=data32(2,:);
+z1(1,:)=data32(3,:);
 
 hold on
 scatter3(x1,y1,z1, 'filled');
