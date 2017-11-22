@@ -4,14 +4,14 @@
 %si se desean mas checkboards
 global data1
 global data2
-inf=strcat(num2str(time),'ET',num2str(size),'size',num2str(NumEstim),'NE_uno_dosec.csv');
+inf=strcat(num2str(time),'ET',num2str(size),'size',num2str(NumEstim),'NE_uno_4secPAB.csv');
 %seq=seq/2;
 dWidth = 1; %Inicializacion de valores para Checkboard
 dLength = 5;
 %NumEstim=length(seq);
 %Sequence=cell(NumEstim, 3); %Matriz donde se guardarán datos de CreateCheckboard:  [ chb0, chb1, black ]
 img = -1;
-blacktime= NumEstim*2; %Empieza con pantalla negra un segundo luego un segundo despues de cada checkboard
+blacktime= NumEstim*4; %Empieza con pantalla negra un segundo luego un segundo despues de cada checkboard
 fs=500;
 
 
@@ -31,7 +31,7 @@ startBackground(s);
 while(~s.IsDone)
     
     [x, y, img]=StimulateVision(0, black, c1, img);
-    pause(2)
+    pause(4)
     [x, y , img]=StimulateVision(0, c0, c1, img);
     pause(time)
 
