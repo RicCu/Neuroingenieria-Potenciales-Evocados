@@ -10,6 +10,11 @@ x(1,:)=data4(1,:);
 y(1,:)=data4(2,:);
 z(1,:)=data4(3,:);
 
+
+x3(1,:)=data4(4,:);
+y3(1,:)=data4(5,:);
+z3(1,:)=data4(6,:);
+
 scatter3(x,y,z, 'filled');
 
 
@@ -20,7 +25,8 @@ z1(1,:)=data32(3,:);
 hold on
 scatter3(x1,y1,z1, 'filled');
 
-
+hold on
+scatter3(x3,y3,z3, 'filled');
 
 PromData4=mean(data4,2);
 PromData8=mean(data8,2);
