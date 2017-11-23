@@ -1,4 +1,5 @@
-data=csvread('4ET32size20NE_uno_4sec.csv');
+data=csvread('4ET32size15NE_uno_4secPAB.csv');
+data=data(2,:);
 fs=500;
 NumEstim=15;
 totalSamples=length(data);
@@ -32,7 +33,7 @@ alpha1=abs_spec_raw1((8:13),:);
 betha1=abs_spec_raw1((14:31),:);
 
 figure
-spectrogram(blackDATA,1000,2,[1:1:50],500,'yaxis');
+spectrogram(blackDATA,2000,2,[1:1:50],500,'yaxis');
 [spec_raw2, fspec2, tspec2]=spectrogram(blackDATA,2000,2,[1:1:50],500,'yaxis');
 abs_spec_raw2=abs(spec_raw2); 
 
@@ -51,14 +52,14 @@ for i=1:1:(NumEstim)
     bet_prom=mean(betha1(:,i));
     
     
-    if i<11
+ 
     del_prom2=mean(del_the2(:,i));    
     alp_prom2=mean(alpha2(:,i));       
     bet_prom2=mean(betha2(:,i));
     clasificador_array(4,i)=del_prom2;
     clasificador_array(5,i)=alp_prom2;
     clasificador_array(6,i)=bet_prom2;
-    end
+   
     
     clasificador_array(1,i)=del_prom;
     clasificador_array(2,i)=alp_prom;
