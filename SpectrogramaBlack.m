@@ -1,6 +1,9 @@
-data=csvread('4ET32size15NE_uno_4secPAB3.csv');
+close all;
+clear all;
+data=csvread('clasificador_seq1_4.csv');
 data=data(2,:);
 fs=500;
+
 NumEstim=15;
 totalSamples=length(data);
 dt=1/fs;
