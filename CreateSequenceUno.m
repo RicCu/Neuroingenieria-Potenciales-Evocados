@@ -2,8 +2,11 @@ function CreateSequenceUno (time, seq)
 %tipo=1 cuando solo quire pantalla negra y un checkboard
 %tipo=2 cuando quiere pantalla negra y dos checkboard ... se puede cambiar
 %si se desean mas checkboards
-global data
-inf=strcat(num2str(seq),'seq',num2str(time),'sec_uno.csv');
+global data1
+global data2
+
+
+inf=strcat(num2str(seq),'seq',num2str(time),'sec_uno_4sec_Pab_Jueves.csv');
 seq=seq/2;
 dWidth = 1; %Inicializacion de valores para Checkboard
 dLength = 5;
@@ -16,7 +19,7 @@ fs=500;
 
 d = daq.getDevices;
 s = daq.createSession('ni');
-addAnalogInputChannel(s,'Dev1',0, 'Voltage');
+addAnalogInputChannel(s,'Dev1',[0 1], 'Voltage');
 s.Rate = fs;
 TotalTime=(NumEstim*1*time)+blacktime;
 s.DurationInSeconds=TotalTime;
@@ -45,5 +48,7 @@ release(s)
 
 
 figure
-plot(data)
+plot(data1)
+figure
+plot(data2)
 end
