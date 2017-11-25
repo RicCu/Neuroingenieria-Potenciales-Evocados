@@ -21,7 +21,7 @@ data2=tempData(:,2);
 %plot(evt.Data)
 %dlmwrite('experiment_average.csv', cumAvg, '-append');
 
-dlmwrite(inf, tempData', '-append');
+dlmwrite(inf, tempData');
 % s2 = xor(s2, 1);
 % [c0, c1, img] = StimulateVision(s2, c0, c1, img, size);
 %toc

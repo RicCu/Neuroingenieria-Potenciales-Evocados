@@ -1,3 +1,4 @@
+
 data=csvread('4ET4size8NE_uno_4secPAB2.csv');
 data=data(1,:);
 fs=500;
@@ -28,7 +29,7 @@ spectrogram(estimDATA,2000,2,[1:1:80],500,'yaxis');
 abs_spec_raw1=abs(spec_raw1); 
 
 
-del_the1=abs_spec_raw1((1:7),:);      % Separación manal por bandas de EEG (delta+teta/alfa/beta) 
+del_the1=abs_spec_raw1((1:7),:);      % SeparaciÃ³n manal por bandas de EEG (delta+teta/alfa/beta) 
 alpha1=abs_spec_raw1((8:13),:);
 betha1=abs_spec_raw1((14:31),:);
 ABetha=abs_spec_raw1((32:80),:);
@@ -39,7 +40,7 @@ spectrogram(blackDATA,2000,2,[1:1:80],500,'yaxis');
 abs_spec_raw2=abs(spec_raw2); 
 
 
-del_the2=abs_spec_raw2((1:7),:);      % Separación manal por bandas de EEG (delta+teta/alfa/beta) 
+del_the2=abs_spec_raw2((1:7),:);      % SeparaciÃ³n manal por bandas de EEG (delta+teta/alfa/beta) 
 alpha2=abs_spec_raw2((8:13),:);
 betha2=abs_spec_raw2((14:31),:);
 ABetha=abs_spec_raw2((32:80),:);
@@ -48,7 +49,7 @@ ABetha=abs_spec_raw2((32:80),:);
 clasificador_array=zeros(6,(NumEstim));
 
 for i=1:1:(NumEstim)
-    del_prom=mean(del_the1(:,i));     % Al tener varias ventas (en el tiempo) se hace el valor promedio de la señal y se guarda en
+    del_prom=mean(del_the1(:,i));     % Al tener varias ventas (en el tiempo) se hace el valor promedio de la seÃ±al y se guarda en
     alp_prom=mean(alpha1(:,i));       % el vector de datos clasificador_array que contenia puros ceros
     bet_prom=mean(betha1(:,i));
     
@@ -82,7 +83,7 @@ end
 % abs_spec_raw1=abs(spec_raw1); 
 % 
 % 
-% del_the1=abs_spec_raw1((1:6),:);      % Separación manal por bandas de EEG (delta+teta/alfa/beta) 
+% del_the1=abs_spec_raw1((1:6),:);      % SeparaciÃ³n manal por bandas de EEG (delta+teta/alfa/beta) 
 % alpha1=abs_spec_raw1((7:9),:);
 % betha1=abs_spec_raw1((10:31),:);
 
