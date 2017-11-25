@@ -26,11 +26,29 @@ release(s)
 %      canal1(cont-249:cont,1)=data(:,cont2-1);
 %      canal2(cont-249:cont,1)=data(:,cont2);
 %  end
+
+
+
+%% Análisis señal 
+
 PromCanal1=mean(data1,2);
 PromCanal2=mean(data2,2);
 
+BASELINEPromCanal1=mean(PromCanal1);
+
+tvect=1000*(1:length(PromCanal1))/fs; 
+
 PromDATA(:,1:2)=[PromCanal1 , PromCanal2];
 dlmwrite('prueba.csv', PromDATA');
+
+
+
+[Ax1P100,Ix1P100] = min(PromCanal1(1, 20:120)); 
+tx1P100=tvect(IxP100);
+
+
+
+
 
 
 Resultados=[ 1 2 3 4 5; 10 20 30 40 50];

@@ -58,6 +58,10 @@ release(s)
 
 [s,e]=size(data1);
 
+BlackDATA=data2(:,1); %get sample of black screen data to calculate gain 
+BASEBlackDATA=mean(BlackDATA);
+Gain=BASEBlackDATA/BASEBlackDATA;  %change to baseblack data when gain is zero
+
 FiltData1=filtfilt(b,a,data1(:,4:e));
 FiltData2=filtfilt(b,a,data2(:,4:e));
 
@@ -65,21 +69,12 @@ FiltData2=filtfilt(b,a,data2(:,4:e));
 PromCanal1=mean(FiltData1,2);
 PromCanal2=mean(FiltData2,2);
 
-
-%sprom=mean(data,2);
-%figure
-%plot(sprom)
-%figure
-%plot(cumAvg)
 PromDATA(:,1:2)=[PromCanal1 , PromCanal2];
 dlmwrite('prueba.csv', PromDATA');
 
-% dlmwrite('average.csv', sprom, '-append');
-% plot(time)
-% 
-% FiltData=filtfilt(b,a,data);
-% 
-% spromFilt=mean(FiltData,2);
+
+
+
 figure
 plot(PromDATA)
 % hold on
