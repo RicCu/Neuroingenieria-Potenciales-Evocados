@@ -1,7 +1,9 @@
 %%PRUEBA de codigo para deteccion de picos con señal real
 data=csvread('pruebaREAL.csv');
 PromCanal1=transpose(data(1,:));
+PromCanal1=PromCanal1-mean(PromCanal1);
 PromCanal2=transpose(data(2,:));
+PromCanal2=PromCanal2-mean(PromCanal2);
 fs=500;
 [b,a]=butter(6,30/(fs/2),'low'); %Filter design
 

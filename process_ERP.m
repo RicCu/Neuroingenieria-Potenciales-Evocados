@@ -76,7 +76,10 @@ FiltData2=filtfilt(b,a,data2(:,4:e));
 
 
 PromCanal1=mean(FiltData1,2);
+PromCanal1=PromCanal1-mean(PromCanal1);
 PromCanal2=mean(FiltData2,2);
+PromCanal2=PromCanal2-mean(PromCanal2);
+
 
 PromDATA(:,1:2)=[PromCanal1 , PromCanal2];
 dlmwrite('prueba.csv', PromDATA');
