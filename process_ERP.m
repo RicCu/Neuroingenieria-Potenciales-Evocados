@@ -14,6 +14,8 @@ global c0
 global c1
 global img
 global cumAvg
+
+
 global n_cum
 z=0;
 s2 = 0;
@@ -60,7 +62,8 @@ rango=25;
 
 [s,e]=size(data1);
 
-BlackDATA1=data1(:,1); %get sample of black screen data to calculate gain 
+BlackDATA1=data1(:,1); %get sample of black screen data to calculate gaindlmwrite('prueba.csv', tempData');
+%dlmwrite('base.csv', BlackDATA1');
 BASEBlackDATA1=mean(BlackDATA1);
 BlackDATA2=data2(:,1); %get sample of black screen data to calculate gain 
 BASEBlackDATA2=mean(BlackDATA2);
