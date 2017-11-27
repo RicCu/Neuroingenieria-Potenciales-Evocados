@@ -68,8 +68,8 @@ BASEBlackDATA1=mean(BlackDATA1);
 BlackDATA2=data2(:,1); %get sample of black screen data to calculate gain 
 BASEBlackDATA2=mean(BlackDATA2);
 
-REFC1=BASEBlackDATA1;  %%Cambiar a real
-REFC2=BASEBlackDATA2;
+REFC1=0.0020;  %%Cambiar a real
+REFC2=0.0020;
 
 Gain1=BASEBlackDATA1/REFC1;  %change to baseblack data when gain is zero
 Gain2=BASEBlackDATA2/REFC2;  %change to baseblack data when gain is zero
@@ -130,9 +130,10 @@ plot(tvect,PromCanal2, tx2P100,Ax2P100,'+',tx2N75, Ax2N75, '+',tx2N145,Ax2N145,'
 figure
 plot(tvect,PromCanal1, tx1P100,Ax1P100,'+',tx1N75, Ax1N75, '+',tx1N145,AxN145,'+' )
 
-Resultados=[Ax1P100 tx1P100  tx1N75 tx1N145  dly1P100; Ax2P100 tx2P100 tx2N75 tx2N145 dly2P100];
+%Resultados=[Ax1P100 tx1P100  tx1N75 tx1N145  dly1P100; Ax2P100 tx2P100 tx2N75 tx2N145 dly2P100];
 
-dlmwrite('resultados.csv', Resultados); %Agregar ganancia
+Resultados=[tx1N75 tx1N145 tx1P100  dly1P100 Ax1P100 Gain1 ; tx2N75 tx2N145 tx2P100 dly2P100  Ax2P100 Gain2 ];
+dlmwrite('resultados.csv', Resultados);
 clear all
 end
 
