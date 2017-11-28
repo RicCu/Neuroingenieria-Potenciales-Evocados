@@ -71,8 +71,8 @@ BASEBlackDATA2=mean(BlackDATA2);
 REFC1=0.0020;  %%Cambiar a real
 REFC2=0.0020;
 
-Gain1=BASEBlackDATA1/REFC1;  %change to baseblack data when gain is zero
-Gain2=BASEBlackDATA2/REFC2;  %change to baseblack data when gain is zero
+Gain1=abs(BASEBlackDATA1/REFC1);  %change to baseblack data when gain is zero
+Gain2=abs(BASEBlackDATA2/REFC2);  %change to baseblack data when gain is zero
 
 FiltData1=filtfilt(b,a,data1(:,4:e));
 FiltData2=filtfilt(b,a,data2(:,4:e));
@@ -91,8 +91,8 @@ tvect=1000*(1:length(PromCanal1))/fs;
 
 %Canal 1
 %Find P100
-[Ax1P100,Ix1P100] = min(PromCanal1(20:120)); %%Análisis señal canal 1
-Ix1P100=Ix1P100+20;
+[Ax1P100,Ix1P100] = min(PromCanal1(30:90)); %%Análisis señal canal 1
+Ix1P100=Ix1P100+30;
 tx1P100=tvect(Ix1P100);
 
 %Find N75 and N145 
@@ -109,8 +109,8 @@ dly1P100=tx1P100-100;
 
 %Canal 2
 %Find P100
-[Ax2P100,Ix2P100] = min(PromCanal2(20:120)); %%Análisis señal canal 2
-Ix2P100=Ix2P100+20;
+[Ax2P100,Ix2P100] = min(PromCanal2(30:90)); %%Análisis señal canal 2
+Ix2P100=Ix2P100+30;
 tx2P100=tvect(Ix2P100);
 
 %Find N75 and N145 
@@ -125,10 +125,10 @@ tx2N145=tvect(Ix2P100+Ix2145);
 
 dly2P100=tx2P100-100;
 
-figure
-plot(tvect,PromCanal2, tx2P100,Ax2P100,'+',tx2N75, Ax2N75, '+',tx2N145,Ax2N145,'+' )
-figure
-plot(tvect,PromCanal1, tx1P100,Ax1P100,'+',tx1N75, Ax1N75, '+',tx1N145,AxN145,'+' )
+% figure
+% plot(tvect,PromCanal2, tx2P100,Ax2P100,'+',tx2N75, Ax2N75, '+',tx2N145,Ax2N145,'+' )
+% figure
+% plot(tvect,PromCanal1, tx1P100,Ax1P100,'+',tx1N75, Ax1N75, '+',tx1N145,AxN145,'+' )
 
 %Resultados=[Ax1P100 tx1P100  tx1N75 tx1N145  dly1P100; Ax2P100 tx2P100 tx2N75 tx2N145 dly2P100];
 
