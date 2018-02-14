@@ -19,6 +19,6 @@ figure
 plot(tvectnuevo,senal2nueva)
 figure
 plot(tvectnuevo,estimulo2nuevo)
-
+ %%
 end
 
